@@ -32,9 +32,9 @@ def makeWebhookResult(req):
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    zipcode = parameters.get("zip-code")
+    
 
-    speech = "Work of Florist A in zip code area " + zipcode
+    speech = "Work of Florist A in zip code area"
 
     print("Response:")
     print(speech)
@@ -42,7 +42,7 @@ def makeWebhookResult(req):
     kik_message = [
         {
             "type": "text",
-            "body": "Here's an example Florist A work (zip-code area "+ zipcode+")"
+            "body": "Here's an example Florist A work"
         },
         {
             "type": "picture",
