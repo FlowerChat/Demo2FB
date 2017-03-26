@@ -61,6 +61,13 @@ def makeWebhookResult(req):
         "source": "choose-florist"
     }
 
+    if req.get("result").get("action") != "show.florist":
+        return {}
+    result = req.get("result")
+    parameters = result.get("parameters")
+    address = parameters.get("address")
+    zipcode = parameters.get("zip-code")
+
     speech2 = "Here are the examples of FLorist B work"
     print ("Response:")
     print(speech2)
