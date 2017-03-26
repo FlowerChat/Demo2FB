@@ -52,55 +52,6 @@ def makeWebhookResult(req):
 
     print(json.dumps(kik_message))
 
-    return {
-        "speech": speech,
-        "displayText": speech,
-        "data": {"kik": kik_message},
-        # "contextOut": [],
-        "source": "apiai-kik-images"
-    }
-speech = "Work of Florist B"
-
-print("Response:")
-print(speech)
-
-kik_message = [
-        {
-            "type": "text",
-            "body": "Here's an example Florist B work"
-        },
-        {
-            "type": "picture",
-            "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/spring-bouquet-jarni-kytka-web.jpg"
-        }
-    ]
-
-print(json.dumps(kik_message))
-
-return {
-        "speech": speech,
-        "displayText": speech,
-        "data": {"kik": kik_message},
-        # "contextOut": [],
-        "source": "apiai-kik-images"
-    }
-speech = "Work of Florist C" 
-
-print("Response:")
-print(speech)
-
-kik_message = [
-        {
-            "type": "text",
-            "body": "Here's an example Florist C work"
-        },
-        {
-            "type": "picture",
-            "picUrl": "http://fiorita.cz/wp-content/uploads/2017/01/ornithogalum-ruze-trachelium-eustoma-gerbera-alstroemerie.jpg"
-        }
-    ]
-
-print(json.dumps(kik_message))
 
 return {
         "speech": speech,
