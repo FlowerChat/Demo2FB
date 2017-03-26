@@ -32,6 +32,7 @@ def makeWebhookResult(req):
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
+    address = parameters.get("address")
     
 
     speech = "Work of Florist A in zip code area"
