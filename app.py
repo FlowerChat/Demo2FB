@@ -30,9 +30,9 @@ def webhook():
 def makeWebhookResult(req):
     if req.get("result").get("action") != "show.florist":
         return {}
-    #result = req.get("result")
-    #parameters = result.get("parameters")
-    #item = parameters.get("item")
+    result = req.get("result")
+    parameters = result.get("parameters")
+    item = parameters.get("item")
 
     speech = "Work of Florist A" 
 
@@ -59,12 +59,12 @@ def makeWebhookResult(req):
         # "contextOut": [],
         "source": "apiai-kik-images"
     }
-      speech = "Work of Florist B" 
+speech = "Work of Florist B"
 
-    print("Response:")
-    print(speech)
+print("Response:")
+print(speech)
 
-    kik_message = [
+kik_message = [
         {
             "type": "text",
             "body": "Here's an example Florist B work"
@@ -75,21 +75,21 @@ def makeWebhookResult(req):
         }
     ]
 
-    print(json.dumps(kik_message))
+print(json.dumps(kik_message))
 
-    return {
+return {
         "speech": speech,
         "displayText": speech,
         "data": {"kik": kik_message},
         # "contextOut": [],
         "source": "apiai-kik-images"
     }
-        speech = "Work of Florist C" 
+speech = "Work of Florist C" 
 
-    print("Response:")
-    print(speech)
+print("Response:")
+print(speech)
 
-    kik_message = [
+kik_message = [
         {
             "type": "text",
             "body": "Here's an example Florist C work"
@@ -100,9 +100,9 @@ def makeWebhookResult(req):
         }
     ]
 
-    print(json.dumps(kik_message))
+print(json.dumps(kik_message))
 
-    return {
+return {
         "speech": speech,
         "displayText": speech,
         "data": {"kik": kik_message},
