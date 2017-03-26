@@ -30,9 +30,9 @@ def webhook():
 def makeWebhookResult(req):
     if req.get("result").get("action") != "show.florist":
         return {}
-        result = req.get("result")
-    parameters = result.get("parameters")
-    item = parameters.get("item")
+        #result = req.get("result")
+    #parameters = result.get("parameters")
+    #item = parameters.get("item")
 
     speech = "Work of Florist A" 
 
