@@ -36,7 +36,7 @@ def makeWebhookResult(req):
     zipcode = parameters.get("zip-code")
     
 
-    speech = "Here are the examples of FLorist A work"
+    speech = "Here are the examples of Florist A work"
 
     print("Response:")
     print(speech)
@@ -49,30 +49,7 @@ def makeWebhookResult(req):
         {
             "type": "picture",
             "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg"
-        }
-    ]
-
-    print(json.dumps(kik_message))
-    return {
-        "speech": speech,
-        "displayText": speech,
-        "data": {"kik": kik_message},
-        # "contextOut": [],
-        "source": "choose-florist"
-    }
-
-    if req.get("result").get("action") != "show.florist":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    address = parameters.get("address")
-    zipcode = parameters.get("zip-code")
-
-    speech = "Here are the examples of FLorist B work"
-    print ("Response:")
-    print(speech)
-    
-    kik_message = [
+        },
         {
             "type": "text",
             "body": "Here's an example of the Florist B work"
@@ -82,11 +59,13 @@ def makeWebhookResult(req):
             "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/spring-bouquet-jarni-kytka-web.jpg"
         }
     ]
+
     print(json.dumps(kik_message))
     return {
         "speech": speech,
         "displayText": speech,
         "data": {"kik": kik_message},
+        # "contextOut": [],
         "source": "choose-florist"
     }
 
