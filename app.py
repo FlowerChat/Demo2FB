@@ -30,11 +30,11 @@ def webhook():
 def makeWebhookResult(req):
     if req.get("result").get("action") != "show.florist":
         return {}
-        #result = req.get("result")
-    #parameters = result.get("parameters")
-    #item = parameters.get("item")
+    result = req.get("result")
+    parameters = result.get("parameters")
+    zipcode = parameters.get("zip-code")
 
-    speech = "Work of Florist A" 
+    speech = "Work of Florist A in zip code area " + zipcode
 
     print("Response:")
     print(speech)
@@ -42,7 +42,7 @@ def makeWebhookResult(req):
     kik_message = [
         {
             "type": "text",
-            "body": "Here's an example Florist A work"
+            "body": "Here's an example Florist A work (zip-code area "+ zipcode+")"
         },
         {
             "type": "picture",
