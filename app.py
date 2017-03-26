@@ -47,7 +47,7 @@ def makeWebhookResult(req):
         },
         {
             "type": "picture",
-            "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg"
+            "picUrl": "https://raw.githubusercontent.com/svet4/apiai-kik-rich-formatting/master/pictures/item1.png"
         }
     ]
 
