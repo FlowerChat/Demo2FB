@@ -30,7 +30,7 @@ def webhook():
 def makeWebhookResult(req):
     if req.get("result").get("action") != "show.florist":
         return {}
-    result = req.get("result")
+        result = req.get("result")
     parameters = result.get("parameters")
     item = parameters.get("item")
 
@@ -53,13 +53,7 @@ def makeWebhookResult(req):
     print(json.dumps(kik_message))
 
 
-return {
-        "speech": speech,
-        "displayText": speech,
-        "data": {"kik": kik_message},
-        # "contextOut": [],
-        "source": "apiai-kik-images"
-    }  
+
 
 
 if __name__ == '__main__':
