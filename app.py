@@ -36,7 +36,7 @@ def makeWebhookResult(req):
     zipcode = parameters.get("zip-code")
     
 
-    speech = "Work of Florist A"
+    speech = "Here are the examples of bouquets"
 
     print("Response:")
     print(speech)
