@@ -33,6 +33,7 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     address = parameters.get("address")
+    zipcode = parameters.get("zip-code")
     
 
     speech = "Work of Florist A"
@@ -43,7 +44,7 @@ def makeWebhookResult(req):
     kik_message = [
         {
             "type": "text",
-            "body": "Here's an example Florist A work near" + address
+            "body": "Here's an example Florist A work near " + address + ", " + zipcode
         },
         {
             "type": "picture",
@@ -57,7 +58,7 @@ def makeWebhookResult(req):
         "displayText": speech,
         "data": {"kik": kik_message},
         # "contextOut": [],
-        "source": "apiai-kik-images"
+        "source": "choose-florist"
     }
 
 
