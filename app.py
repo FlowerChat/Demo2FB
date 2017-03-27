@@ -57,14 +57,6 @@ def makeWebhookResult(req):
         {
             "type": "picture",
             "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/spring-bouquet-jarni-kytka-web.jpg"
-        },
-        {
-            "type": "text",
-            "body": "Here's an example of the Florist C work"
-        },
-        {
-            "type": "picture",
-            "picUrl": "http://fiorita.cz/wp-content/uploads/2017/01/ornithogalum-ruze-trachelium-eustoma-gerbera-alstroemerie.jpg"
         }
     ]
 
