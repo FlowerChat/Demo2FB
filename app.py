@@ -59,9 +59,12 @@ def makeWebhookResult(req):
             "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/spring-bouquet-jarni-kytka-web.jpg"
         },
         {
-            "type": "keyboards",[
-                "type": "suggested",
-                "responses": [
+            "type": "text",
+            "body": "Please choose FLorist A or Florist B",
+            "keyboards": [
+                {
+                    "type": "suggested",
+                    "responses": [
                         {
                             "type": "text",
                             "body": "Florist A"
@@ -70,6 +73,10 @@ def makeWebhookResult(req):
                             "type": "text",
                             "body": "Florist B"
                         }
+                    ]
+                }
+            ]
+        }
         
     ]
 
