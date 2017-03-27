@@ -66,7 +66,6 @@ def makeWebhookResult(req):
             "type": "picture",
             "picUrl": "http://fiorita.cz/wp-content/uploads/2017/01/ornithogalum-ruze-trachelium-eustoma-gerbera-alstroemerie.jpg"
         }
-
     ]
 
     print(json.dumps(kik_message))
