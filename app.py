@@ -60,7 +60,10 @@ def makeWebhookResult(req):
         },
         {
             "type": "text",
-            "body": "Please choose FLorist A or Florist B",
+            "body": "Please choose Florist A or Florist B",
+        }
+        {
+            "type": "text",
             "keyboards": [
                 {
                     "type": "suggested",
