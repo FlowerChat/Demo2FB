@@ -71,7 +71,7 @@ def makeWebhookResult(req):
         "displayText": speech,
         "data": {"kik": kik_message},
         # "contextOut": [],
-        "source": "choose-florist"
+        "contextOut": [{"name":"choose-florist", "lifespan":2}]
     }
 
 
