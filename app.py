@@ -57,7 +57,20 @@ def makeWebhookResult(req):
         {
             "type": "picture",
             "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/spring-bouquet-jarni-kytka-web.jpg"
-        }
+        },
+        {
+            "type": "keyboards",[
+                "type": "suggested",
+                "responses": [
+                        {
+                            "type": "text",
+                            "body": "Florist A"
+                        },
+                        {
+                            "type": "text",
+                            "body": "Florist B"
+                        }
+        
     ]
 
     print(json.dumps(kik_message))
