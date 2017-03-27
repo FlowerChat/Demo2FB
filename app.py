@@ -64,6 +64,7 @@ def makeWebhookResult(req):
         },
         {
             "type": "text",
+            "body": "please choose",
             "keyboards": [
                 {
                     "type": "suggested",
