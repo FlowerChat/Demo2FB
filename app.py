@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import urllib
-import smtplib
 import json
 import os
 
@@ -74,26 +73,6 @@ def makeWebhookResult(req):
         # "contextOut": [],
         "contextOut": [{"name":"choose-florist", "lifespan":2}]
     }
-#!/usr/bin/python
-
-
-
-sender = 'flowerchatbot@gmail.com'
-receivers = ['kirill.gorbunov@gmail.com.com']
-
-message = """From: From Person <flowerchatbot@gmail.com>
-To: To Person <kirill.gorbunov@gmail.com.com>
-Subject: SMTP e-mail test
-
-This is a test e-mail message.
-"""
-
-try:
-   smtpObj = smtplib.SMTP('smpt.gmail.com', 465)
-   smtpObj.sendmail(sender, receivers, message)         
-   print "Successfully sent email"
-except SMTPException:
-   print "Error: unable to send email"
 
 
 
