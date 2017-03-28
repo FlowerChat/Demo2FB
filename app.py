@@ -64,11 +64,11 @@ def makeWebhookResult(req):
         
     
 
-    print(json.dumps(kik_message))
+    print(json.dumps(facebook_message))
     return {
         "speech": speech,
         "displayText": speech,
-        "data": {"kik": kik_message},
+        "data": {"kik": facebook_message},
         # "contextOut": [],
         "contextOut": [{"name":"choose-florist", "lifespan":2}]
     }
