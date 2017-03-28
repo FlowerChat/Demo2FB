@@ -41,7 +41,7 @@ def makeWebhookResult(req):
     print("Response:")
     print(speech)
 
-    kik_message = [
+    kik_message = 
         {
             "type": "text",
             "body": "Here's an example of the Florist A work near " + address + ", " + zipcode
@@ -63,7 +63,7 @@ def makeWebhookResult(req):
             "body": "Please choose Florist A or Florist B",
         }
         
-    ]
+    
 
     print(json.dumps(kik_message))
     return {
