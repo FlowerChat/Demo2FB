@@ -48,7 +48,8 @@ def makeWebhookResult(req):
         {
             "type": "picture",
             "url": "http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg"
-        },
+        }
+    },
         {
             "type": "text",
             "body": "Here's an example of the Florist B work"
