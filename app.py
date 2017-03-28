@@ -41,7 +41,8 @@ def makeWebhookResult(req):
     print("Response:")
     print(speech)
     
-    {
+    facebook_message = [
+        {
       "facebook": {
         "attachment": {
           "type": "file",
@@ -51,6 +52,8 @@ def makeWebhookResult(req):
         }
       }
     }
+    ]
+    
         
         
     
@@ -59,7 +62,7 @@ def makeWebhookResult(req):
     return {
         "speech": speech,
         "displayText": speech,
-        "data": {"facebook"},
+        "data": {"facebook":{facebook_message}},
         # "contextOut": [],
         "contextOut": [{"name":"choose-florist", "lifespan":2}]
     }
