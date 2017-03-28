@@ -41,7 +41,7 @@ def makeWebhookResult(req):
     print("Response:")
     print(speech)
 
-    kik_message = 
+    facebook_message = 
         {
             "type": "text",
             "body": "Here's an example of the Florist A work near " + address + ", " + zipcode
