@@ -41,16 +41,16 @@ def makeWebhookResult(req):
     print("Response:")
     print(speech)
     
-{
-  "facebook": {
-    "attachment": {
-      "type": "file",
-      "payload": {
-        "url": "https://examples.api.ai/RichMessagesFiles/LoremIpsum.pdf"
+    {
+      "facebook": {
+        "attachment": {
+          "type": "file",
+          "payload": {
+            "url": "https://examples.api.ai/RichMessagesFiles/LoremIpsum.pdf"
+          }
+        }
       }
     }
-  }
-}
         
         
     
