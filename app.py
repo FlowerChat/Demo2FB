@@ -41,29 +41,7 @@ def makeWebhookResult(req):
     print("Response:")
     print(speech)
 
-    facebook_message = [
-        {
-            "type": "text",
-            "body": "Here's an example of the Florist A work near " + address + ", " + zipcode
-        },
-        {
-            "type": "picture",
-            "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg"
-        },
-        {
-            "type": "text",
-            "body": "Here's an example of the Florist B work"
-        },
-        {
-            "type": "picture",
-            "picUrl": "http://fiorita.cz/wp-content/uploads/2017/03/spring-bouquet-jarni-kytka-web.jpg"
-        },
-        {
-            "type": "text",
-            "body": "Please choose Florist A or Florist B",
-        }
-        
-    ]
+    facebook_message = "I want to check fb messenger"
         
         
     
