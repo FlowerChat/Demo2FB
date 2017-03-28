@@ -58,7 +58,7 @@ def makeWebhookResult(req):
     return {
         "speech": speech,
         "displayText": speech,
-        "data": {"kik": facebook_message},
+        "data": {"facebook": facebook_message},
         # "contextOut": [],
         "contextOut": [{"name":"choose-florist", "lifespan":2}]
     }
