@@ -41,7 +41,17 @@ def makeWebhookResult(req):
     print("Response:")
     print(speech)
 
-    facebook_message = "I want to check fb messenger"
+    facebook_message = 
+    {
+  "facebook": {
+    "attachment": {
+      "type": "file",
+      "payload": {
+        "url": "https://examples.api.ai/RichMessagesFiles/LoremIpsum.pdf"
+      }
+    }
+  }
+}
         
         
     
