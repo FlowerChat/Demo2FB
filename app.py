@@ -125,7 +125,7 @@ def makeWebhookResult(req):
                     "attachement":{
                         "type": "image",
                         "payload":{
-                            "url: final_pic
+                            "url": final_pic
                         }
                     }
                 }
