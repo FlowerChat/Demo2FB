@@ -27,7 +27,9 @@ def reply(user_id, msg):
     resp = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + ACCESS_TOKEN, json=data)
     print(resp.content)
 
-
+    
+# Flask app should start in global layout
+app = Flask(__name__)
 @app.route('/webhook', methods=['GET'])
 def handle_verification():
     if request.args['hub.verify_token'] == VERIFY_TOKEN:
@@ -41,8 +43,7 @@ def handle_verification():
 #str = unicode(str, errors='ignore')
 
 
-# Flask app should start in global layout
-app = Flask(__name__)
+
 
 
 @app.route('/webhook', methods=['POST'])
