@@ -33,7 +33,7 @@ def handle_verification():
     if request.args['hub.verify_token'] == VERIFY_TOKEN:
         return request.args['hub.challenge']
     else:
-return "Invalid verification token"
+        return "Invalid verification token"
 
 
 
