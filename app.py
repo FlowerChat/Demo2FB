@@ -16,26 +16,26 @@ search_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 photos_url = "https://maps.googleapis.com/maps/api/place/photo"
 details_url = "https://maps.googleapis.com/maps/api/place/details/json"
 
-ACCESS_TOKEN = "EAARq6hqpYzMBAKXODZCMiEZBs6fXa80LUNxAfLN5ByjlN0eNXB6bvyD8f3WJ9ruSVGZCUOZBxGOMs95jjwAMuid0oVgD3GyVAqB60kvNlNNVfpyD5LUGSTa3Q1wZA9NOczvCCZAIOoNgCETcFNzJehNjMF5TeYksTaAHEbP3rgsQZDZD"
-VERIFY_TOKEN = "Finlease1"
+#ACCESS_TOKEN = "EAARq6hqpYzMBAKXODZCMiEZBs6fXa80LUNxAfLN5ByjlN0eNXB6bvyD8f3WJ9ruSVGZCUOZBxGOMs95jjwAMuid0oVgD3GyVAqB60kvNlNNVfpyD5LUGSTa3Q1wZA9NOczvCCZAIOoNgCETcFNzJehNjMF5TeYksTaAHEbP3rgsQZDZD"
+#VERIFY_TOKEN = "Finlease1"
 
-def reply(user_id, msg):
-    data = {
-        "recipient": {"id": user_id},
-        "message": {"text": msg}
-    }
-    resp = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + ACCESS_TOKEN, json=data)
-    print(resp.content)
+#def reply(user_id, msg):
+   ## data = {
+      #  "recipient": {"id": user_id},
+       # "message": {"text": msg}
+   ## }
+   # resp = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + ACCESS_TOKEN, json=data)
+  #  print(resp.content)
 
     
 # Flask app should start in global layout
 app = Flask(__name__)
-@app.route('/webhook', methods=['GET'])
-def handle_verification():
-    if request.args['hub.verify_token'] == VERIFY_TOKEN:
-        return request.args['hub.challenge']
-    else:
-        return "Invalid verification token"
+#@app.route('/webhook', methods=['GET'])
+##def handle_verification():
+  ##  if request.args['hub.verify_token'] == VERIFY_TOKEN:
+     #   return request.args['hub.challenge']
+    #else:
+    #    return "Invalid verification token"
 
 
 
