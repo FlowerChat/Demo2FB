@@ -59,10 +59,10 @@ def makeWebhookResult(req):
         print("Response:")
         print(speech)
 
-        fb_message =
-            {
-                "text": TimeStamp
-            }
+       # fb_message =
+        #    {
+           #     "text": TimeStamp
+         #   }
         
         
 
@@ -70,9 +70,9 @@ def makeWebhookResult(req):
         return {
             "speech": speech,
             "displayText": speech,
-            "data": {"facebook": fb_message},
+           # "data": {"facebook": fb_message},
         # "contextOut": [],
-            "contextOut": [{"name":"flowerchatline", "lifespan":5},{"name":"choose-florist", "lifespan":1}]
+         #   "contextOut": [{"name":"flowerchatline", "lifespan":5},{"name":"choose-florist", "lifespan":1}]
         }
     return {}
     
