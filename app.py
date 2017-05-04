@@ -59,7 +59,7 @@ def makeWebhookResult(req):
         print("Response:")
         print(speech)
 
-        fb_message = 
+        fb_message =
             {
                 "text": TimeStamp
             }
