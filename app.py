@@ -47,6 +47,7 @@ def makeWebhookResult(req):
         
     
         TimeStamp=str(datetime.datetime.utcnow())
+        
 
      
     
@@ -59,9 +60,19 @@ def makeWebhookResult(req):
         print("Response:")
         print(speech)
 
-        facebook_message = {
-            "text": TimeStamp
-            }
+        facebook_message = [
+            {
+                "text": TimeStamp
+            },
+            {
+                "buttons":[
+                {
+                    "type":"phone_number",
+                    "title":"Call Irina",
+                    "payload":"+420607817716"
+                }
+            ]
+        ]
 
         print(json.dumps(facebook_message))
         return {
