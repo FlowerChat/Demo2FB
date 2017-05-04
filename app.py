@@ -1,78 +1,12 @@
 #!/usr/bin/env python
 
-
 import urllib
 import json
 import os
 
-from flask import Flask, render_template, jsonify
-import requests
-#from key import key
-import imghdr
+from flask import Flask
 from flask import request
 from flask import make_response
-#import psycopg2
-import datetime
-import apiai
-
-# FB messenger credentials
-ACCESS_TOKEN = "EAARq6hqpYzMBAKa5PZBPmWkRUTkJ1KTLcuqPkSVmGAmntKR1AbZBnFTZAZAMonA57ZBTCJsvEImZCr5QpJzBL7K5ntJ3FN9oeeNlKMWqTwZAqBM69YbP5mDI5sGun17mT2OnGqESZC6CtwnezgecZBwW1dm9IgJZCTgb9g2WaMV9j4IQZDZD"
-
-# api.ai credentials
-CLIENT_ACCESS_TOKEN = "fd4ac3df66f4414ea8548d9a7a170755"
-ai = apiai.ApiAI(CLIENT_ACCESS_TOKEN)
-
-app = Flask(__name__)
-
-@app.route('/webhook', methods=['GET'])
-def verify():
-    # our endpoint echos back the 'hub.challenge' value specified when we setup the webhook
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-        if not request.args.get("hub.verify_token") == 'foo':
-            return "Verification token mismatch", 403
-        return request.args["hub.challenge"], 200
-
-    return 'Hello World (from Flask!)', 200
-
-def reply(user_id, msg):
-    data = {
-        "recipient": {"id": user_id},
-        "message": {"text": msg}
-    }
-    resp = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + ACCESS_TOKEN, json=data)
-    print(resp.content)
-
-
-@app.route('/webhook', methods=['POST'])
-def handle_incoming_messages():
-    data = request.json
-    sender = data['entry'][0]['messaging'][0]['sender']['id']
-    message = data['entry'][0]['messaging'][0]['message']['text']
-
-    # prepare API.ai request
-    req = ai.text_request()
-    req.lang = 'en'  # optional, default value equal 'en'
-    req.query = message
-
-    # get response from API.ai
-    api_response = req.getresponse()
-    responsestr = api_response.read().decode('utf-8')
-    response_obj = json.loads(responsestr)
-    if 'result' in response_obj:
-        response = response_obj["result"]["fulfillment"]["speech"]
-    reply(sender, response)
-
-    return "ok"
-
-
-# search_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
-# photos_url = "https://maps.googleapis.com/maps/api/place/photo"
-# details_url = "https://maps.googleapis.com/maps/api/place/details/json"
-
-
-
-
-
 
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -85,53 +19,146 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = makeWebhookResult(req)
+    res = processRequest(req)
 
     res = json.dumps(res, indent=4)
-    print(res)
+    # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
 
-def makeWebhookResult(req):
-    
-    if req.get("result").get("action")=="input.welcome":
-        TimeStamp=str(datetime.datetime.utcnow())
-            
-    
 
-    
+def processRequest(req):
+    if req.get("result").get("action") != "input.welcome":
+        return {}
+    baseurl = "https://query.yahooapis.com/v1/public/yql?"
+    yql_query = makeYqlQuery(req)
+    if yql_query is None:
+        return {}
+    yql_url = baseurl + urllib.urlencode({'q': yql_query}) + "&format=json"
+    print(yql_url)
 
-        speech = TimeStamp
+    result = urllib.urlopen(yql_url).read()
+    print("yql result: ")
+    print(result)
+
+    data = json.loads(result)
+    res = makeWebhookResult(data)
+    return res
 
 
-        print("Response:")
-        print(speech)
+def makeYqlQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    city = "Paris"
+    if city is None:
+        return None
 
-       # fb_message =
-        #    {
-           #     "text": TimeStamp
-         #   }
-        
-        
+    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
-        print(json.dumps(fb_message))
-        return {
-            "speech": speech,
-            "displayText": speech,
-           # "data": {"facebook": fb_message},
-        # "contextOut": [],
-         #   "contextOut": [{"name":"flowerchatline", "lifespan":5},{"name":"choose-florist", "lifespan":1}]
+
+def makeWebhookResult(data):
+    query = data.get('query')
+    if query is None:
+        return {}
+
+    result = query.get('results')
+    if result is None:
+        return {}
+
+    channel = result.get('channel')
+    if channel is None:
+        return {}
+
+    item = channel.get('item')
+    location = channel.get('location')
+    units = channel.get('units')
+    if (location is None) or (item is None) or (units is None):
+        return {}
+
+    condition = item.get('condition')
+    if condition is None:
+        return {}
+
+    # print(json.dumps(item, indent=4))
+
+    speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
+             ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
+
+    print("Response:")
+    print(speech)
+
+    slack_message = {
+        "text": speech,
+        "attachments": [
+            {
+                "title": channel.get('title'),
+                "title_link": channel.get('link'),
+                "color": "#36a64f",
+
+                "fields": [
+                    {
+                        "title": "Condition",
+                        "value": "Temp " + condition.get('temp') +
+                                 " " + units.get('temperature'),
+                        "short": "false"
+                    },
+                    {
+                        "title": "Wind",
+                        "value": "Speed: " + channel.get('wind').get('speed') +
+                                 ", direction: " + channel.get('wind').get('direction'),
+                        "short": "true"
+                    },
+                    {
+                        "title": "Atmosphere",
+                        "value": "Humidity " + channel.get('atmosphere').get('humidity') +
+                                 " pressure " + channel.get('atmosphere').get('pressure'),
+                        "short": "true"
+                    }
+                ],
+
+                "thumb_url": "http://l.yimg.com/a/i/us/we/52/" + condition.get('code') + ".gif"
+            }
+        ]
+    }
+
+    facebook_message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": channel.get('title'),
+                        "image_url": "http://l.yimg.com/a/i/us/we/52/" + condition.get('code') + ".gif",
+                        "subtitle": speech,
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url": channel.get('link'),
+                                "title": "View Details"
+                            }
+                        ]
+                    }
+                ]
+            }
         }
-    return {}
-    
+    }
 
-    
+    print(json.dumps(slack_message))
 
+    return {
+        "speech": speech,
+        "displayText": speech,
+        "data": {"slack": slack_message, "facebook": facebook_message},
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
     print "Starting app on port %d" % port
-app.run(debug=True, port=port, host='0.0.0.0')
+
+app.run(debug=False, port=port, host='0.0.0.0')
