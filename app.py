@@ -63,14 +63,15 @@ def makeWebhookResult(req):
         facebook_message = {
                 "text": TimeStamp
             },
-            {
-                "buttons":[
                 {
-                    "type":"phone_number",
-                    "title":"Call Irina",
-                    "payload":"+420607817716"
-                }
-            ]
+                "buttons":[
+                    {
+                        "type":"phone_number",
+                        "title":"Call Irina",
+                        "payload":"+420607817716"
+                    }
+                ]
+            }
         
 
         print(json.dumps(facebook_message))
