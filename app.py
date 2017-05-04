@@ -11,7 +11,7 @@ import requests
 import imghdr
 from flask import request
 from flask import make_response
-import psycopg2
+#import psycopg2
 import datetime
 
 
