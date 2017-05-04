@@ -60,8 +60,7 @@ def makeWebhookResult(req):
         print("Response:")
         print(speech)
 
-        facebook_message = [
-            {
+        facebook_message = {
                 "text": TimeStamp
             },
             {
@@ -72,7 +71,7 @@ def makeWebhookResult(req):
                     "payload":"+420607817716"
                 }
             ]
-        ]
+        
 
         print(json.dumps(facebook_message))
         return {
