@@ -24,7 +24,7 @@ ai = apiai.ApiAI(CLIENT_ACCESS_TOKEN)
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/webhook', methods=['GET'])
 def verify():
     # our endpoint echos back the 'hub.challenge' value specified when we setup the webhook
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
