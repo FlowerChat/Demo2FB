@@ -61,21 +61,29 @@ def makeWebhookResult(req):
         print(speech)
 
         facebook_message = {
-                "attachment":{
-      "type":"template",
-         "payload":{
-            "template_type":"button",
-            "text":"Need further assistance? Talk to a representative",
-                "buttons":[
-                    {
-                        "type":"phone_number",
-                        "title":"Call Irina",
-                        "payload":"+420607817716"
-                    }
-                ]
-            }
+            "text":"Please share your location:",
+            "quick_replies":[
+                {
+                    "content_type":"location",
+                }
+            ]
         }
-    }
+  #{
+            #    "attachment":{
+      ##"type":"template",
+         #"payload":{
+          #  "template_type":"button",
+           # "text":"Need further assistance? Talk to a representative",
+            #    "buttons":[
+             #       {
+              #          "type":"phone_number",
+               ##         "title":"Call Irina",
+                 #       "payload":"+420607817716"
+                  #  }
+               # ]
+           # }
+       # }
+   # }
             #}
         
 
