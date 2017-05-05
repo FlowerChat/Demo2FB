@@ -61,16 +61,16 @@ def makeWebhookResult(req):
         print(speech)
 
         facebook_message = {
-                "text": TimeStamp
-            },
-           # {
-            "buttons":[
-                {
-                    "type":"phone_number",
-                    "title":"Call Irina",
-                    "payload":"+420607817716"
-                }
-            ]
+                #"text": TimeStamp
+           # },
+           ## {
+                "buttons":[
+                    {
+                        "type":"phone_number",
+                        "title":"Call Irina",
+                        "payload":"+420607817716"
+                    }
+                ]
             #}
         
 
