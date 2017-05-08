@@ -84,8 +84,8 @@ def makeWebhookResult(req):
         fblocation=contexts[0]
         conparams=fblocation.get("parameters")
     
-        CustLong=conparams.get("long")
-        CustLat=conparams.get("lat")
+        CustLong=str(conparams.get("long"))
+        CustLat=str(conparams.get("lat"))
         speech="test"
         
         
