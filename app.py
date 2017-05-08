@@ -61,39 +61,22 @@ def makeWebhookResult(req):
         print(speech)
 
         facebook_message = {
-            "text":"Please share your location:",
+            "text":"For better service please share your current location:",
             "quick_replies":[
                 {
                     "content_type":"location",
                 }
             ]
         }
-  #{
-            #    "attachment":{
-      ##"type":"template",
-         #"payload":{
-          #  "template_type":"button",
-           # "text":"Need further assistance? Talk to a representative",
-            #    "buttons":[
-             #       {
-              #          "type":"phone_number",
-               ##         "title":"Call Irina",
-                 #       "payload":"+420607817716"
-                  #  }
-               # ]
-           # }
-       # }
-   # }
-            #}
         
 
         print(json.dumps(facebook_message))
         return {
-            "speech": speech,
-            "displayText": speech,
+            #"speech": speech,
+            #"displayText": speech,
             "data": {"facebook": facebook_message},
         # "contextOut": [],
-            "contextOut": [{"name":"flowerchatline", "lifespan":5},{"name":"choose-florist", "lifespan":1}]
+            "contextOut": [{"name":"flowerchatline", "lifespan":5}]
         }
     return {}
     
