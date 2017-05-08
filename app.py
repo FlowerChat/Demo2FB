@@ -77,8 +77,8 @@ def makeWebhookResult(req):
             "data": {"facebook": facebook_message},
         # "contextOut": [],
             "contextOut": [{"name":"facebook_location", "lifespan":5}]
-        },
-    elif req.get("result").get("action")=="input.address":
+        }
+    elif req.get("result").get("action")=="input.location":
         result = req.get("result")
         contexts=result.get("contexts")
         fblocation=contexts[0]
@@ -92,7 +92,7 @@ def makeWebhookResult(req):
         print("Response:")
         print speech
         facebook_message = {
-            "text": "Your current location is " + CustLong  +" " + CustLat
+            "text": "Your current location is " #+ CustLong  +" " + CustLat
         }
         print(json.dumps(facebook_message))
         return {
