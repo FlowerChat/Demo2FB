@@ -77,7 +77,7 @@ def makeWebhookResult(req):
             "data": {"facebook": facebook_message},
         # "contextOut": [],
             "contextOut": [{"name":"facebook_location", "lifespan":5}]
-        }
+        },
     elif req.get("result").get("action")=="input.address":
         result = req.get("result")
         contexts=result.get("contexts")
