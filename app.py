@@ -81,8 +81,7 @@ def makeWebhookResult(req):
     if req.get("result").get("action")=="input.address":
         result = req.get("result")
         contexts=result.get("contexts")
-        fblocation=contexts[1]
-
+        fblocation=contexts[0]
         conparams=fblocation.get("parameters")
     
         CustLong=conparams.get("long")
