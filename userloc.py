@@ -1,4 +1,5 @@
-result = app.req.get("result")
+from app import req
+result = req.get("result")
 contexts=result.get("contexts")
 fblocation=contexts[0]
 conparams=fblocation.get("parameters")
