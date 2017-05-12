@@ -79,7 +79,7 @@ def makeWebhookResult(req):
             "contextOut": [{"name":"facebook_location", "lifespan":5}]
         }
     elif req.get("result").get("action")=="input.location":
-        Call userloc
+        import userloc
                 
         #result = req.get("result")
         #contexts=result.get("contexts")
