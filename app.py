@@ -97,10 +97,10 @@ def makeWebhookResult(req):
         #    "text": "Your current location is " + CustLong  +" " + CustLat
         #}
         #print(json.dumps(facebook_message))
-        #return {
-        #    "data":{"facebook":facebook_message},
-        #    "contextOut": [{"name":"facebook_location", "lifespan":5}]
-        #}
+        return {
+            "data":{"facebook":facebook_message},
+            "contextOut": [{"name":"facebook_location", "lifespan":5}]
+        }
 
         
     return {}
