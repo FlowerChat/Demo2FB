@@ -47,6 +47,9 @@ def makeWebhookResult(req):
         
     
         TimeStamp=str(datetime.datetime.utcnow())
+        #result = req.get("result")
+        #contexts=result.get("contexts")
+        
         
 
      
@@ -88,13 +91,19 @@ def makeWebhookResult(req):
     
         CustLong=str(conparams.get("long"))
         CustLat=str(conparams.get("lat"))
+        generic_con=contexts["generic"]
+
+        generic_conparams=generic_con.get("parameters")
+    
+        facebook_id=str(generic_conparams.get("facebook_sender_id"))
+        
         speech="test"
         
         
         print("Response:")
         print speech
         facebook_message = {
-            "text": "Your current location is " + CustLong  +" " + CustLat
+            "text": "Your current location is " + CustLong  +" " + CustLat+" user id: "+facebook_id
         }
         print(json.dumps(facebook_message))
         return {
