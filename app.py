@@ -40,17 +40,17 @@ def webhook():
 def makeWebhookResult(req):
     
     if req.get("result").get("action") == "firstfb":
-        #result= req.get("result")
-        #contexts=result.get("contexts")
-        #generic_con=contexts{"name":"generic"}
+        result= req.get("result")
+        contexts=result.get("contexts")
+        generic_con=contexts("generic")
 
-        #generic_conparams=generic_con.get("parameters")
+        generic_conparams=generic_con.get("parameters")
     
-        #facebook_id=str(generic_conparams.get("facebook_sender_id"))
-        #user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
-        #user_req=requests.get(user_id_url)
-        #user_json=user_req.json()
-        #facebook_user_firstname=user_json["first_name"]
+        facebook_id=str(generic_conparams.get("facebook_sender_id"))
+        user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
+        user_req=requests.get(user_id_url)
+        user_json=user_req.json()
+        facebook_user_firstname=user_json["first_name"]
         
         TimeStamp=str(datetime.datetime.utcnow())
         
@@ -60,7 +60,7 @@ def makeWebhookResult(req):
         print("Response:")
         print speech
         facebook_message = {
-            "text": "Hi, "+ TimeStamp +", I am a FlowerChat bot who will help you find the best florist"
+            "text": "Hi, "+ facebook_user_firstname +", I am a FlowerChat bot who will help you find the best florist"
         }
 
         
