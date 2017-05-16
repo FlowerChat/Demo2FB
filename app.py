@@ -40,17 +40,17 @@ def webhook():
 def makeWebhookResult(req):
     
     if req.get("result").get("action") == "welcome.firstfb":
-        result= req.get("result")
-        contexts=result.get("contexts")
-        generic_con=contexts{"name":"generic"}
+        #result= req.get("result")
+        #contexts=result.get("contexts")
+        #generic_con=contexts{"name":"generic"}
 
-        generic_conparams=generic_con.get("parameters")
+        #generic_conparams=generic_con.get("parameters")
     
-        facebook_id=str(generic_conparams.get("facebook_sender_id"))
-        user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
-        user_req=requests.get(user_id_url)
-        user_json=user_req.json()
-        facebook_user_firstname=user_json["first_name"]
+        #facebook_id=str(generic_conparams.get("facebook_sender_id"))
+        #user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
+        #user_req=requests.get(user_id_url)
+        #user_json=user_req.json()
+        #facebook_user_firstname=user_json["first_name"]
         
         TimeStamp=str(datetime.datetime.utcnow())
         
@@ -60,42 +60,10 @@ def makeWebhookResult(req):
         print("Response:")
         print (speech)
         facebook_message = {
-            "text": "Hi, "+facebook_user_firstname+", I am a FlowerChat bot who will help you find the best florist"
+            "text": "Hi, "+ TimeStamp +", I am a FlowerChat bot who will help you find the best florist"
         }
 
-        #facebook_message = {
-         #   "attachment":{
-          #      "type":"template",
-           #     "payload":{
-            #        "template_type":"generic",
-             #       "elements":[
-              #          {
-               #             "title":"Hi, "+facebook_user_firstname+"I am a FlowerChat bot who helps you order flowers from the best local florists",
-                #            "image_url":"http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
-                 #           "subtitle":"Like this one from my creators",
-                  #          "default_action": {
-                   #             "type": "web_url",
-                    #            "url": "http://fiorita.cz",
-                     #           "messenger_extensions": true,
-                      #          "webview_height_ratio": "tall",
-                      #          "fallback_url": "http://fiorita.cz/"
-                      #      },
-                      #      "buttons":[
-                      #          {
-                      #              "type":"web_url",
-                      #              "url":"http://fiorita.cz",
-                      #              "title":"Visit my creator/'s website"
-                      #          },{
-                     #               "type":"postback",
-                    #                "title":"Start Chatting",
-                   #                 "payload":"DEVELOPER_DEFINED_PAYLOAD"
-                  #              }              
-                 #           ]      
-                #        }
-               #     ]
-              #  }
-           # }
-        #}
+        
         print(json.dumps(facebook_message))
         return {
             "data":{"facebook":facebook_message},
@@ -116,6 +84,7 @@ def makeWebhookResult(req):
 
         print("Response:")
         print(speech)
+        
 
         facebook_message = {
             "text":"For better service please share your current location:",
