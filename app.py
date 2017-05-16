@@ -145,7 +145,8 @@ def makeWebhookResult(req):
     
         CustLong=str(conparams.get("long"))
         CustLat=str(conparams.get("lat"))
-        generic_con=contexts[3]
+        #generic_con=contexts[3]
+        generic_con=contexts{"name":"generic"}
 
         generic_conparams=generic_con.get("parameters")
     
