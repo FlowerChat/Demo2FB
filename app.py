@@ -74,8 +74,7 @@ def makeWebhookResult(req):
                 }
             ]
         }
-}
-        #}
+}        #}
             #"attachment":{
                 #"type":"template",
                 #"payload":{
