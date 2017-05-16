@@ -57,7 +57,7 @@ def makeWebhookResult(req):
         print("Response:")
         print speech
 
-        facebook_message={
+        facebook_message = {
             "attachment":{
                 "type":"template",
                 "payload":{
