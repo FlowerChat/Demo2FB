@@ -109,7 +109,7 @@ def makeWebhookResult(req):
         print("Response:")
         print speech
         facebook_message = {
-            "text": "Your current location is " + CustLong  +" " + CustLat+" hello "+facebook_facebook_user_firstname
+            "text": "Your current location is " + CustLong  +" " + CustLat+" hello "+facebook_user_firstname
         }
         print(json.dumps(facebook_message))
         return {
