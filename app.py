@@ -60,7 +60,39 @@ def makeWebhookResult(req):
         print("Response:")
         print speech
         facebook_message = {
-            "text": "Hi, "+ facebook_user_firstname +", I am a FlowerChat bot who will help you find the best florist"
+            #"text": "Hi, "+ facebook_user_firstname +", I am a FlowerChat bot who will help you find the best florist"
+        #}
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"generic",
+                    "elements":[
+                        {
+                            "title":"Hi, "+ facebook_user_firstname +", I am a FlowerChat bot who will help you find the best florist who will tie a bouquet like this",
+                            "image_url":"http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
+                            "subtitle":"This is the bouquet tied by my developers",
+                            "default_action": {
+                                "type": "web_url",
+                                "url": "http://fiorita.cz/",
+                                "messenger_extensions": true,
+                                "webview_height_ratio": "tall",
+                                "fallback_url": "http://fiorita.cz/"
+                            },
+                            "buttons":[
+                                {
+                                    "type":"web_url",
+                                    "url":"http://fiorita.cz",
+                                    "title":"View Website"
+                                },{
+                                    "type":"postback",
+                                    "title":"Start Chatting",
+                                    "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                                }              
+                            ]      
+                        }
+                    ]
+                }
+            }
         }
 
         
