@@ -56,40 +56,43 @@ def makeWebhookResult(req):
         
         print("Response:")
         print speech
-
-        facebook_message = {
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"generic",
-                    "elements":[
-                        {
-                            "title":"Hi, "+facebook_user_firstname+"I am a FlowerChat bot who helps you order flowers from the best local florists",
-                            "image_url":"http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
-                            "subtitle":"Like this one from my creators",
-                            "default_action": {
-                                "type": "web_url",
-                                "url": "http://fiorita.cz",
-                                "messenger_extensions": true,
-                                "webview_height_ratio": "tall",
-                                "fallback_url": "http://fiorita.cz/"
-                            },
-                            "buttons":[
-                                {
-                                    "type":"web_url",
-                                    "url":"http://fiorita.cz",
-                                    "title":"Visit my creator/'s website"
-                                },{
-                                    "type":"postback",
-                                    "title":"Start Chatting",
-                                    "payload":"DEVELOPER_DEFINED_PAYLOAD"
-                                }              
-                            ]      
-                        }
-                    ]
-                }
-            }
+        facebook_message={
+            "text": "Hi, " + facebook_user_firstname  +", I am a FlowerChat bot who will help you find the best florist"
         }
+
+        #facebook_message = {
+         #   "attachment":{
+          #      "type":"template",
+           #     "payload":{
+            #        "template_type":"generic",
+             #       "elements":[
+              #          {
+               #             "title":"Hi, "+facebook_user_firstname+"I am a FlowerChat bot who helps you order flowers from the best local florists",
+                #            "image_url":"http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
+                 #           "subtitle":"Like this one from my creators",
+                  #          "default_action": {
+                   #             "type": "web_url",
+                    #            "url": "http://fiorita.cz",
+                     #           "messenger_extensions": true,
+                      #          "webview_height_ratio": "tall",
+                      #          "fallback_url": "http://fiorita.cz/"
+                      #      },
+                      #      "buttons":[
+                      #          {
+                      #              "type":"web_url",
+                      #              "url":"http://fiorita.cz",
+                      #              "title":"Visit my creator/'s website"
+                      #          },{
+                     #               "type":"postback",
+                    #                "title":"Start Chatting",
+                   #                 "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                  #              }              
+                 #           ]      
+                #        }
+               #     ]
+              #  }
+           # }
+        #}
         print(json.dumps(facebook_message))
         return {
             "data":{"facebook":facebook_message},
