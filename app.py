@@ -42,7 +42,7 @@ def makeWebhookResult(req):
     if req.get("result").get("action") =="welcome1":
         result= req.get("result")
         contexts=result.get("contexts")
-        generic_con=contexts[3]
+        generic_con=contexts[1]
 
         generic_conparams=generic_con.get("parameters")
     
