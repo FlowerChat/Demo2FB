@@ -39,7 +39,7 @@ def webhook():
 
 def makeWebhookResult(req):
     
-    if req.get("result").get("action") == "welcome1":
+    if req.get("result").get("action") == "welcome.firstname":
         result= req.get("result")
         contexts=result.get("contexts")
         generic_con=contexts[1]
