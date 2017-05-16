@@ -52,12 +52,15 @@ def makeWebhookResult(req):
         user_json=user_req.json()
         facebook_user_firstname=user_json["first_name"]
         
-        speech="test"
+        TimeStamp=str(datetime.datetime.utcnow())
+        
+
+        speech = TimeStamp
         
         print("Response:")
-        print speech
+        print (speech)
         facebook_message = {
-            "text": "Hi, I am a FlowerChat bot who will help you find the best florist"
+            "text": "Hi, "+facebook_user_firstname+", I am a FlowerChat bot who will help you find the best florist"
         }
 
         #facebook_message = {
