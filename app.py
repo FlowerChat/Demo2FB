@@ -91,7 +91,7 @@ def makeWebhookResult(req):
                                 #"messenger_extensions": "true",
                                 #"webview_height_ratio": "tall",
                                 #"fallback_url": "http://www.fiorita.cz/"
-                            }#,
+                            #},
                             #"buttons":[
                                 #{
                                     #"type":"web_url",
