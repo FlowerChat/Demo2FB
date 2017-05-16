@@ -11,39 +11,15 @@ from key import key
 import imghdr
 from flask import request
 from flask import make_response
+#import psycopg2
+import datetime
 
-search_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
-photos_url = "https://maps.googleapis.com/maps/api/place/photo"
-details_url = "https://maps.googleapis.com/maps/api/place/details/json"
 
-#ACCESS_TOKEN = "EAARq6hqpYzMBAKXODZCMiEZBs6fXa80LUNxAfLN5ByjlN0eNXB6bvyD8f3WJ9ruSVGZCUOZBxGOMs95jjwAMuid0oVgD3GyVAqB60kvNlNNVfpyD5LUGSTa3Q1wZA9NOczvCCZAIOoNgCETcFNzJehNjMF5TeYksTaAHEbP3rgsQZDZD"
-#VERIFY_TOKEN = "Finlease1"
 
-#def reply(user_id, msg):
-   ## data = {
-      #  "recipient": {"id": user_id},
-       # "message": {"text": msg}
-   ## }
-   # resp = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + ACCESS_TOKEN, json=data)
-  #  print(resp.content)
 
-    
+
 # Flask app should start in global layout
 app = Flask(__name__)
-#@app.route('/webhook', methods=['GET'])
-##def handle_verification():
-  ##  if request.args['hub.verify_token'] == VERIFY_TOKEN:
-     #   return request.args['hub.challenge']
-    #else:
-    #    return "Invalid verification token"
-
-
-
-
-#str = unicode(str, errors='ignore')
-
-
-
 
 
 @app.route('/webhook', methods=['POST'])
@@ -62,160 +38,131 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "show.florist":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    address = parameters.get("Address")
-    zipcode = parameters.get("ZipCode")
-    city = parameters.get("City")
-    amp = str("&")
-    ques= str("?")
-    photo_ref = str("photoreference=")
-    photo_width=str("maxwidth=1600")
-    key_eq=str("key=")
-    key_str=str(key)
-    str_address="florist at"+str(address)
+    
+    if req.get("result").get("action") == "welcome1":
+        result= req.get("result")
+        contexts=result.get("contexts")
+        generic_con=contexts[1]
 
+        generic_conparams=generic_con.get("parameters")
     
-    
-    
-    
-    
-    #trying to retrieve pics
-    
-    search_payload = {"key":key, "query":str_address, "radius": 10000}
-    search_req = requests.get(search_url, params=search_payload)
-    search_json = search_req.json()
-    gplace_id=search_json["results"][0]["place_id"]
-    gplace_id2=search_json["results"][1]["place_id"]
-    details_payload={"key":key, "placeid":gplace_id}
-    details_payload2={"key":key, "placeid":gplace_id2}
-    details_req=requests.get(details_url, params=details_payload)
-    details_req2=requests.get(details_url, params=details_payload2)
-    details_json=details_req.json()
-    details_json2=details_req2.json()
-
-
-    
-    #webadd=details_json["result"]["website"]
-    #webadd_str=str(webadd)
-    
-    photo_id = details_json["result"]["photos"][1]["photo_reference"]
-    photo_id2=details_json2["result"]["photos"][1]["photo_reference"]
-    name_shop1=details_json["result"]["name"]
-    name_shop2=details_json2["result"]["name"]
-    phone_shop1=details_json["result"]["international_phone_number"]
-    phone_shop2=details_json2["result"]["international_phone_number"]
-    form_add1=details_json["result"]["formatted_address"]
-    form_add2=details_json2["result"]["formatted_address"]
-    
-
-    #website0=details_json["result"]["website"]
-    #website1=details_json2["result"]["website"]
-    #hwebsite0="http://"+website0
-    #hwebsite1="http://"+website1
-
-
-
-    #photo_id = search_json["results"][0]["photos"][0]["photo_reference"]
-    #photo_link=photos_url+"?maxwidth=1600"+"&"+"photoreference="+photo_id+"&"+key
-    
-    photo_payload = {"key" : key, "maxwidth": 1600, "maxhight": 1600, "photoreference" : photo_id}
-    photo_request = requests.get(photos_url, params=photo_payload)
-    #final_pic=str(photo_request)
-    
-    final_pic=photos_url+ques+photo_width+amp+photo_ref+photo_id+amp+key_eq+"AIzaSyD8pgLKrEDnUYBoGVvpw0B4dT4qAyHaRXg"
-    final_pic2=photos_url+ques+photo_width+amp+photo_ref+photo_id2+amp+key_eq+"AIzaSyD8pgLKrEDnUYBoGVvpw0B4dT4qAyHaRXg"
-    
-    
-
-    
-
-    speech = "Here are the pictures of florists' work"
-
-
-    print("Response:")
-    print(speech)
-
-    kik_message = [
-        
-        {
-            "data":{
-                "facebook":{
-                    "attachement":{
-                        "type": "image",
-                        "payload":{
-                            "url": final_pic
+        facebook_id=str(generic_conparams.get("facebook_sender_id"))
+        user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
+        user_req=requests.get(user_id_url)
+        user_json=user_req.json()
+        facebook_user_firstname=user_json["first_name"]
+        print("Response:")
+        facebook_message={
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"generic",
+                    "elements":[
+                        {
+                            "title":"Hi, "+facebook_user_firstname+"I am a FlowerChat bot who helps you order flowers from the best local florists",
+                            "image_url":"http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
+                            "subtitle":"Like this one from my creators",
+                            "default_action": {
+                                "type": "web_url",
+                                "url": "http://fiorita.cz",
+                                "messenger_extensions": true,
+                                "webview_height_ratio": "tall",
+                                "fallback_url": "http://fiorita.cz/"
+                            },
+                            "buttons":[
+                                {
+                                    "type":"web_url",
+                                    "url":"http://fiorita.cz",
+                                    "title":"Visit my creator/'s website"
+                                },{
+                                    "type":"postback",
+                                    "title":"Start Chatting",
+                                    "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                                }              
+                            ]      
                         }
-                    }
+                    ]
                 }
             }
         }
-           # "type": "picture",
-            #"picUrl": final_pic  
-
-        #},
-        #{
-        #    "type": "text",
-        #    "body": name_shop1+", phone: "+phone_shop1+", adress: "+form_add1
-        #},
-        #{
-         #   "type": "text",
-          #  "body": "phone: " + phone_shop1
-        #},
-        #{
-           # "type": "text",
-            #"body": "address: "+form_add1
-        #},
-            
-        #{
-            #"type": "link"
-            #"url": hwebsite0
-        #},
+        print(json.dumps(facebook_message))
+        return {
+            "data":{"facebook":facebook_message},
+            "contextOut": [{"name":"facebook_location", "lifespan":5},{"name":"flowerchatline","facebook_user_first":facebook_user_firstname,"lifespan":100}]
+        }
+    
         
-        #{
-         #   "type": "picture",
-          #  "picUrl": final_pic2
-        #},
-        #{
-        #    "type": "text",
-        #    "body": name_shop2+", phone: "+phone_shop2+", adress: "+form_add2
-        #},
-                    
-        #{
-            #"type": "link"
-            #"url": hwebsite1
-        #},
-        #{
-         #   "type": "text",
-         #   "body": "Please choose Florist A or Florist B",
-         #   "keyboards":[
-         #       {"type": "suggested",
-         #       "responses": [
-         #            {
-         #                "type": "text",
-         #                "body": "Florist A"
-         #            },
-         #            {
-         #               "type": "text",
-          #               "body": "Florist B"
-          #           }
-           #      ]
-           #     }
-           # ]
-        #}
-    ]
+        
+            
+    elif req.get("result").get("action") == "input.welcome":
+        
+    
+        TimeStamp=str(datetime.datetime.utcnow())
+        
+
+        speech = TimeStamp
 
 
-    print(json.dumps(kik_message))
-    return {
-        "speech": speech,
-        "displayText": speech,
-        "data": {"facebook": kik_message},
+        print("Response:")
+        print(speech)
+
+        facebook_message = {
+            "text":"For better service please share your current location:",
+            "quick_replies":[
+                {
+                    "content_type":"location",
+                }
+            ]
+        }
+        
+
+        print(json.dumps(facebook_message))
+        return {
+            #"speech": speech,
+            #"displayText": speech,
+            "data": {"facebook": facebook_message},
         # "contextOut": [],
-        "contextOut": [{"name":"choose-florist", "lifespan":2},{"name":"flowerchatline", "lifespan":5}]
-    }
+            "contextOut": [{"name":"facebook_location", "lifespan":5}]
+        }
+    elif req.get("result").get("action")=="input.location":
+        #import userloc
+                
+        result = req.get("result")
+        contexts=result.get("contexts")
+        fblocation=contexts[0]
+        conparams=fblocation.get("parameters")
+    
+        CustLong=str(conparams.get("long"))
+        CustLat=str(conparams.get("lat"))
+        generic_con=contexts[3]
+
+        generic_conparams=generic_con.get("parameters")
+    
+        facebook_id=str(generic_conparams.get("facebook_sender_id"))
+        user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
+        user_req=requests.get(user_id_url)
+        user_json=user_req.json()
+        facebook_user_firstname=user_json["first_name"]
+        
+           
+        
+        speech="test"
+        
+        
+        print("Response:")
+        print speech
+        facebook_message = {
+            "text": "Your current location is " + CustLong  +" " + CustLat+" hello "+facebook_user_firstname
+        }
+        print(json.dumps(facebook_message))
+        return {
+            "data":{"facebook":facebook_message},
+            "contextOut": [{"name":"facebook_location", "lifespan":5},{"name":"flowerchatline","facebook_user_first":facebook_user_firstname,"lifespan":100}]
+        }
+
+        
+    return {}
+    
 
     
 
