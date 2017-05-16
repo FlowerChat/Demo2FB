@@ -42,7 +42,7 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "firstfb":
         result= req.get("result")
         contexts=result.get("contexts")
-        generic_con=contexts("generic")
+        generic_con=contexts['generic']
 
         generic_conparams=generic_con.get("parameters")
     
