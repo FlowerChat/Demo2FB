@@ -18,6 +18,10 @@ import datetime
 
 
 
+
+#str = unicode(str, errors='ignore')
+
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -39,66 +43,19 @@ def webhook():
 
 def makeWebhookResult(req):
     
-    if req.get("result").get("action") =="welcome1":
-        result= req.get("result")
-        contexts=result.get("contexts")
-        generic_con=contexts[1]
-
-        generic_conparams=generic_con.get("parameters")
-    
-        facebook_id=str(generic_conparams.get("facebook_sender_id"))
-        user_id_url="https://graph.facebook.com/v2.6/"+facebook_id+"?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAARq6hqpYzMBACdg4Y2PXnoc8YlDkKysqZClfKC0X09aZBvklWsoNZAMP00ZCvrnm0O6nT2n1gh7YhDCnYvGWVbpPtzK5ZAa6qsjm98ZCZCmnmbc0hDZBBz6WGCSBCQ3Vm4FYnZBkyJdkbdHjZCHh98VOn8tM64Lyqvik3o2l23OfGIgZDZD"
-        user_req=requests.get(user_id_url)
-        user_json=user_req.json()
-        facebook_user_firstname=user_json["first_name"]
-        print("Response:")
-        facebook_message={
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"generic",
-                    "elements":[
-                        {
-                            "title":"Hi, "+facebook_user_firstname+"I am a FlowerChat bot who helps you order flowers from the best local florists",
-                            "image_url":"http://fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
-                            "subtitle":"Like this one from my creators",
-                            "default_action": {
-                                "type": "web_url",
-                                "url": "http://fiorita.cz",
-                                "messenger_extensions": true,
-                                "webview_height_ratio": "tall",
-                                "fallback_url": "http://fiorita.cz/"
-                            },
-                            "buttons":[
-                                {
-                                    "type":"web_url",
-                                    "url":"http://fiorita.cz",
-                                    "title":"Visit my creator/'s website"
-                                },{
-                                    "type":"postback",
-                                    "title":"Start Chatting",
-                                    "payload":"DEVELOPER_DEFINED_PAYLOAD"
-                                }              
-                            ]      
-                        }
-                    ]
-                }
-            }
-        }
-        print(json.dumps(facebook_message))
-        return {
-            "data":{"facebook":facebook_message},
-            "contextOut": [{"name":"facebook_location", "lifespan":5},{"name":"flowerchatline","facebook_user_first":facebook_user_firstname,"lifespan":100}]
-        }
-    
-        
-        
-            
-    elif req.get("result").get("action") == "input.welcome":
+    if req.get("result").get("action") == "input.welcome":
         
     
         TimeStamp=str(datetime.datetime.utcnow())
+        #result = req.get("result")
+        #contexts=result.get("contexts")
         
+        
+
+     
+    
+
+    
 
         speech = TimeStamp
 
