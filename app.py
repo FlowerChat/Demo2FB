@@ -51,7 +51,12 @@ def makeWebhookResult(req):
         user_req=requests.get(user_id_url)
         user_json=user_req.json()
         facebook_user_firstname=user_json["first_name"]
+        
+        speech="test"
+        
         print("Response:")
+        print speech
+
         facebook_message={
             "attachment":{
                 "type":"template",
