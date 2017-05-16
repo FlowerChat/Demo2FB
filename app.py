@@ -57,7 +57,7 @@ def makeWebhookResult(req):
         print("Response:")
         print speech
         facebook_message={
-            "text": "Hi, " + facebook_user_firstname  +", I am a FlowerChat bot who will help you find the best florist"
+            "text": "Hi, I am a FlowerChat bot who will help you find the best florist"
         }
 
         #facebook_message = {
