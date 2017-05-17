@@ -148,7 +148,7 @@ def makeWebhookResult(req):
             #"displayText": speech,
             "data": {"facebook": facebook_message},
         # "contextOut": [],
-            #"contextOut": [{"name":"facebook_location", "lifespan":5}]
+            "contextOut": [{"name":"facebook_location", "lifespan":0}]
         }
     elif req.get("result").get("action")=="input.location":
         #import userloc
