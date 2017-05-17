@@ -160,6 +160,7 @@ def makeWebhookResult(req):
     
         CustLong=str(conparams.get("long"))
         CustLat=str(conparams.get("lat"))
+        CustLoc=CustLat+","+CustLong
         #generic_con=contexts[3]
         generic_con=contexts[2]
 
@@ -183,7 +184,7 @@ def makeWebhookResult(req):
     
     #trying to retrieve pics
     
-        search_payload = {"key":key, "location":CustLat,CustLong, "radius": 5000, "type": "florist"}
+        search_payload = {"key":key, "location":CustLoc, "radius": 5000, "type": "florist"}
         search_req = requests.get(search_url, params=search_payload)
         search_json = search_req.json()
         gplace_id=search_json["results"][0]["place_id"]
