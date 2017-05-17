@@ -113,7 +113,7 @@ def makeWebhookResult(req):
         print(json.dumps(facebook_message))
         return {
             "data":{"facebook":facebook_message},
-            "contextOut": [{"name":"facebook_location", "lifespan":5}]
+            "contextOut": [{"name":"facebook_location", "lifespan":0}]
         }
     
         
