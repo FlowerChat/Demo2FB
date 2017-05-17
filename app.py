@@ -200,8 +200,8 @@ def makeWebhookResult(req):
     
    # photo id of businesses 
     
-        photo_id = details_json["result"]["photos"][1]["photo_reference"]
-        photo_id2=details_json2["result"]["photos"][1]["photo_reference"]
+        photo_id = details_json["result"]["photos"][0]["photo_reference"]
+        photo_id2=details_json2["result"]["photos"][0]["photo_reference"]
         
    # name of businesses
    
