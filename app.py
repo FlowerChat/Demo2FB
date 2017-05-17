@@ -119,21 +119,21 @@ def makeWebhookResult(req):
         
         
             
-    elif req.get("result").get("action") == "input.welcome":
+    elif req.get("result").get("action") == "ask.location":
         
     
-        TimeStamp=str(datetime.datetime.utcnow())
+        #TimeStamp=str(datetime.datetime.utcnow())
         
 
-        speech = TimeStamp
+        #speech = TimeStamp
 
 
         print("Response:")
-        print(speech)
+        #print(speech)
         
 
         facebook_message = {
-            "text":"For better service please share your current location:",
+            "text":"You have chosen pick-up service from a local florist. For better service please share your current location:",
             "quick_replies":[
                 {
                     "content_type":"location",
