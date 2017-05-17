@@ -180,7 +180,7 @@ def makeWebhookResult(req):
         photo_width=str("maxwidth=1600")
         key_eq=str("key=")
         key_str=str(key)
-        str_address="florist at"+str(address)
+        #str_address="florist at"+str(address)
     
     #trying to retrieve pics
     
