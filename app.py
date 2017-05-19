@@ -85,7 +85,7 @@ def makeWebhookResult(req):
                                 },{
                                     "type":"postback",
                                     "title":"Quit",
-                                    "payload":"No, thanks"
+                                    "payload":"No"
                                 }
                             ]              
                         }      
