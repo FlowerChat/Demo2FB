@@ -68,7 +68,7 @@ def makeWebhookResult(req):
                         
                         
                         {
-                            "title":"Hi, "+ facebook_user_firstname +", I can help you find the best local business",                            
+                            "title":"Hi, "+ facebook_user_firstname +", I can help you find the best local business"#,                            
                             #"image_url":
                             #}
                         }#,{
