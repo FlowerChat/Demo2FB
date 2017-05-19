@@ -71,24 +71,24 @@ def makeWebhookResult(req):
                             "title":"Hi, "+ facebook_user_firstname +", I can help you find the best local business",                            
                             #"image_url":
                             #}
-                        },{
-                            "buttons":[
-                                {
-                                    "type":"web_url",
-                                    "url":"http://www.example.com",
-                                    "title":"View sponsor's web"
+                        }#,{
+                            #"buttons":[
+                                #{
+                                    #"type":"web_url",
+                                    #"url":"http://www.example.com",
+                                    #"title":"View sponsor's web"
                                                                   
-                                },{                                  
-                                    "type":"postback",
-                                    "title":"Start Chatting",
-                                    "payload":"Yes, please"
-                                }#,{
+                                #},{                                  
+                                    #"type":"postback",
+                                    #"title":"Start Chatting",
+                                    #"payload":"Yes, please"
+                                #}#,{
                                     #"type":"postback",
                                     #"title":"Quit",
                                     #"payload":"No thanks"
                                 #}
-                            ]              
-                        }      
+                            #]              
+                        #}      
                         
                     }
                 }
