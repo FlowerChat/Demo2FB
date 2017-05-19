@@ -65,16 +65,17 @@ def makeWebhookResult(req):
                 "payload":{
                     "template_type":"generic",
                     "elements":[
-                        [
+                        (
+                        
                             {
                                 "title":"Hi, "+ facebook_user_firstname +", I can help you find the best local business",                            
                             #"image_url":
                             #}
                             },{
                                 "buttons":[
-                                    {
-                                        "type":"web_url",
-                                        "url":"http://www.example.com",
+                                {
+                                    "type":"web_url",
+                                    "url":"http://www.example.com",
                                         "title":"View sponsor's web"
                                                                   
                                     },{                                  
@@ -88,7 +89,7 @@ def makeWebhookResult(req):
                                     }
                                 ]              
                             }      
-                        ]
+                        )
                     ]
                 }
             }
