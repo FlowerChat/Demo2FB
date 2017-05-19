@@ -67,21 +67,14 @@ def makeWebhookResult(req):
                     "elements":[
                         [
                             {
-                                "title":"Hi, "+ facebook_user_firstname +", I can help you find the best local florist",                            
-                            #"image_url":"http://www.fiorita.cz/wp-content/uploads/2017/03/kvetinarstvi-praha-jarni-kytice-tulipany-anemony-pryskyrniky.jpg",
-                            #"subtitle":"The bouquet was tied by my developers. You can order flowers through their web",
-                            #"default_action":{
-                                #"type": "web_url",
-                                #"url": "http://www.fiorita.cz/" #,
-                                #"messenger_extensions": "true",
-                                #"webview_height_ratio": "tall",
-                                #"fallback_url": "http://www.fiorita.cz/"
+                                "title":"Hi, "+ facebook_user_firstname +", I can help you find the best local business",                            
+                            #"image_url":
                             #}
                             },{
                                 "buttons":[
                                     {
                                         "type":"web_url",
-                                        "url":"http://www.fiorita.cz",
+                                        "url":"http://www.example.com",
                                         "title":"View sponsor's web"
                                                                   
                                     },{                                  
