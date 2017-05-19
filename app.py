@@ -94,8 +94,8 @@ def makeWebhookResult(req):
                                         "payload":"No, thanks"
                                     }
                                 ]              
-                            ]      
-                        }
+                            }      
+                        ]
                     ]
                 }
             }
