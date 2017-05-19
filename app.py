@@ -73,10 +73,10 @@ def makeWebhookResult(req):
                             #}
                         },{
                             "buttons":[
-                            {
-                                "type":"web_url",
-                                "url":"http://www.example.com",
-                                "title":"View sponsor's web"
+                                {
+                                    "type":"web_url",
+                                    "url":"http://www.example.com",
+                                    "title":"View sponsor's web"
                                                                   
                                 },{                                  
                                     "type":"postback",
@@ -85,7 +85,7 @@ def makeWebhookResult(req):
                                 },{
                                     "type":"postback",
                                     "title":"Quit",
-                                    "payload":"1"
+                                    "payload":"No thanks"
                                 }
                             ]              
                         }      
