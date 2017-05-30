@@ -176,12 +176,16 @@ def makeWebhookResult(req):
         search_json = search_req.json()
         gplace_id=search_json["results"][0]["place_id"]
         gplace_id2=search_json["results"][1]["place_id"]
+        gplace_id3=search_json["results"][2]["place_id"]
         details_payload={"key":key, "placeid":gplace_id}
         details_payload2={"key":key, "placeid":gplace_id2}
+        details_payload3={"key":key, "placeod":gplace_id3}
         details_req=requests.get(details_url, params=details_payload)
         details_req2=requests.get(details_url, params=details_payload2)
+        details_req3=requests.get(details_url, params=details_payload3)
         details_json=details_req.json()
         details_json2=details_req2.json()
+        details_json3=details_req3.json()
 
 
     
@@ -189,18 +193,22 @@ def makeWebhookResult(req):
     
         photo_id = details_json["result"]["photos"][0]["photo_reference"]
         photo_id2=details_json2["result"]["photos"][0]["photo_reference"]
+        photo_id3=details_json3["result"]["photos"][0]["photo_reference"]
         
    # name of businesses
    
         name_shop1=details_json["result"]["name"]
         name_shop2=details_json2["result"]["name"]
+        name_shop3=details_json3["result"]["name"]
         
    # addresses and tel of businesses
    
         phone_shop1=details_json["result"]["international_phone_number"]
         phone_shop2=details_json2["result"]["international_phone_number"]
+        phone_shop3=details_json3["result"]["international_phone_number"]
         form_add1=details_json["result"]["formatted_address"]
         form_add2=details_json2["result"]["formatted_address"]
+        form_add3=details_json3["result"]["formatted_address"]
     
 
    
@@ -215,6 +223,7 @@ def makeWebhookResult(req):
     
         final_pic=photos_url+ques+photo_width+amp+photo_ref+photo_id+amp+key_eq+"AIzaSyD8pgLKrEDnUYBoGVvpw0B4dT4qAyHaRXg"
         final_pic2=photos_url+ques+photo_width+amp+photo_ref+photo_id2+amp+key_eq+"AIzaSyD8pgLKrEDnUYBoGVvpw0B4dT4qAyHaRXg"
+        final_pic3=photos_url+ques+photo_width+amp+photo_ref+photo_id3+amp+key_eq+"AIzaSyD8pgLKrEDnUYBoGVvpw0B4dT4qAyHaRXg"
 
            
         
@@ -274,6 +283,26 @@ def makeWebhookResult(req):
                                 "title": "Call me",
                                 "type": "phone_number",
                                 "payload": phone_shop2
+                                                 
+                            }
+                        ]                
+                    },
+                    {
+                        "title": name_shop3,
+                        "image_url": final_pic3,
+                        "subtitle": form_add3,
+                        #"default_action": {
+                        #    "type": "web_url",
+                        #    "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
+                        #    "messenger_extensions": true,
+                        #    "webview_height_ratio": "tall",
+                        #    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                        #},
+                        "buttons": [
+                            {
+                                "title": "Call me",
+                                "type": "phone_number",
+                                "payload": phone_shop3
                                                  
                             }
                         ]                
