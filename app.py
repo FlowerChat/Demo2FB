@@ -242,7 +242,7 @@ def makeWebhookResult(req):
                     {
                         "title": name_shop1,
                         "image_url": final_pic,
-                        "subtitle": form_add1 #,
+                        "subtitle": form_add1,
                         #"default_action": {
                         #   "type": "web_url",
                         #   "url": "https://peterssendreceiveapp.ngrok.io/shop_collection",
@@ -250,7 +250,7 @@ def makeWebhookResult(req):
                         #   "webview_height_ratio": "tall",
                         #   "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
                         #    },
-                        "buttons": [
+                        "buttons":[
                             {
                                 "title": "Call me",
                                 "type": "phone_number",
@@ -261,7 +261,7 @@ def makeWebhookResult(req):
                     {
                         "title": name_shop2,
                         "image_url": final_pic2,
-                        "subtitle": form_add2 #,
+                        "subtitle": form_add2,
                         #"default_action": {
                         #    "type": "web_url",
                         #    "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
