@@ -179,7 +179,7 @@ def makeWebhookResult(req):
         gplace_id3=search_json["results"][2]["place_id"]
         details_payload={"key":key, "placeid":gplace_id}
         details_payload2={"key":key, "placeid":gplace_id2}
-        details_payload3={"key":key, "placeod":gplace_id3}
+        details_payload3={"key":key, "placeid":gplace_id3}
         details_req=requests.get(details_url, params=details_payload)
         details_req2=requests.get(details_url, params=details_payload2)
         details_req3=requests.get(details_url, params=details_payload3)
